@@ -11,49 +11,8 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int map=0x7f020000;
         public static final int texture=0x7f020001;
         public static final int yoyo=0x7f020002;
-        public static final int yoyo10=0x7f020003;
-        public static final int yoyo11=0x7f020004;
-        public static final int yoyo12=0x7f020005;
-        public static final int yoyo13=0x7f020006;
-        public static final int yoyo14=0x7f020007;
-        public static final int yoyo15=0x7f020008;
-        public static final int yoyo16=0x7f020009;
-        public static final int yoyo17=0x7f02000a;
-        public static final int yoyo18=0x7f02000b;
-        public static final int yoyo19=0x7f02000c;
-        public static final int yoyo2=0x7f02000d;
-        public static final int yoyo20=0x7f02000e;
-        public static final int yoyo21=0x7f02000f;
-        public static final int yoyo22=0x7f020010;
-        public static final int yoyo23=0x7f020011;
-        public static final int yoyo24=0x7f020012;
-        public static final int yoyo25=0x7f020013;
-        public static final int yoyo26=0x7f020014;
-        public static final int yoyo27=0x7f020015;
-        public static final int yoyo28=0x7f020016;
-        public static final int yoyo29=0x7f020017;
-        public static final int yoyo3=0x7f020018;
-        public static final int yoyo30=0x7f020019;
-        public static final int yoyo36=0x7f02001a;
-        public static final int yoyo37=0x7f02001b;
-        public static final int yoyo38=0x7f02001c;
-        public static final int yoyo39=0x7f02001d;
-        public static final int yoyo4=0x7f02001e;
-        public static final int yoyo40=0x7f02001f;
-        public static final int yoyo41=0x7f020020;
-        public static final int yoyo42=0x7f020021;
-        public static final int yoyo43=0x7f020022;
-        public static final int yoyo44=0x7f020023;
-        public static final int yoyo45=0x7f020024;
-        public static final int yoyo46=0x7f020025;
-        public static final int yoyo47=0x7f020026;
-        public static final int yoyo5=0x7f020027;
-        public static final int yoyo6=0x7f020028;
-        public static final int yoyo7=0x7f020029;
-        public static final int yoyo8=0x7f02002a;
-        public static final int yoyo9=0x7f02002b;
     }
 }

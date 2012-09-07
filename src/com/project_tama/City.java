@@ -17,15 +17,26 @@ public class City extends SurfaceView {
 		getHolder().addCallback(new CityCallback(this));
 
 		/* Drawing the Tamamon sprite */
-		tama = new Tamamon(this, BitmapFactory.decodeResource(getResources(), R.drawable.yoyo6));
+		tama = new Tamamon(this, BitmapFactory.decodeResource(getResources(), R.drawable.yoyo));
 		
 		texture = BitmapFactory.decodeResource(getResources(), R.drawable.texture);
 	}
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		canvas.drawBitmap(texture, 0, 0, null);
+		drawTexture(canvas);
+		
 		tama.drawMe(canvas);
+	}
+	
+	private void drawTexture(Canvas canvas) {
+		int textureWidth = texture.getWidth(), textureHeight = texture.getHeight();
+		
+		/* Filling the display with */
+		for (int i = 0; i < 3; i++) {
+			canvas.drawBitmap(texture, textureWidth*i, 0, null);
+			canvas.drawBitmap(texture, textureWidth*i, textureHeight, null);	
+		}
 	}
 	
 }

@@ -49,8 +49,6 @@ public class GameLoop extends Thread {
 			try {
 				if (sleepTime > 0)
 					sleep(sleepTime);
-				else
-					sleep(50);
 			} catch (Exception e) {
 				// TO-DO
 				e.printStackTrace();

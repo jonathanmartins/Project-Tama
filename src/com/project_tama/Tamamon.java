@@ -2,47 +2,51 @@ package com.project_tama;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Rect;
+import android.graphics.Rect; // L T R B 
 
 public class Tamamon {
 
-	private static final int COLS = 2;
-	private int width;
-	private int height;
 	private int currentFrame = 0;
-	
+
 	private int x = 0;
 	private int y = 0;
-	private int xSpeed = 5;
+
+	private int xSpeed = 10;
+	private int ySpeed = 10;
+
 	private City city;
 	private Bitmap bmp;
 
 	public Tamamon(City city, Bitmap bmp) {
 		this.city = city;
 		this.bmp = bmp;	
-		this.width = 55;
-		this.height = 50;
 	}
-	
+
 	public void drawMe(Canvas canvas) {
 		update();
-        int srcX = currentFrame * width;
-        int srcY = 1 * height;
-        Rect src = new Rect(srcX, srcY, srcX + width, srcY + height);
-        Rect dst = new Rect(x, y, x + width, y + height);
-        canvas.drawBitmap(bmp, src, dst, null);
+		Rect src = leftWalk(currentFrame);
+		Rect dst = new Rect(x, y, x + 55, y + 50);
+		canvas.drawBitmap(bmp, src, dst, null);
 	}
 
 	private void update() {
-		if (x > city.getWidth() - bmp.getWidth() - xSpeed) {
-			xSpeed = -5;
+		if (x > city.getWidth() - 55 - xSpeed || x + xSpeed < 0) {
+			xSpeed = -xSpeed;
 		}
-		
-		if (x + xSpeed< 0) {
-			xSpeed = 5;
-		}
-
 		x += xSpeed;
-		currentFrame = ++currentFrame % COLS;
+
+		if (y > city.getHeight() - 50 - ySpeed || y + ySpeed < 0) {
+			ySpeed = -ySpeed;
+		}
+		y += ySpeed;
+
+
+		currentFrame = ++currentFrame % 3;
+	}
+
+	private Rect leftWalk(int frame) {
+		int[][] motion = {{0,0,65,65}, {80,0,145,65}, {0,80,65,145}, {80,80,145,145}};
+
+		return new Rect(motion[frame][0], motion[frame][1], motion[frame][2], motion[frame][3]);
 	}
 }
