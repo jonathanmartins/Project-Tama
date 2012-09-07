@@ -2,6 +2,7 @@ package com.project_tama;
 
 import android.graphics.Canvas;
 
+import com.project_tama.main.City;
 
 public class GameLoop extends Thread {
 	private City city;

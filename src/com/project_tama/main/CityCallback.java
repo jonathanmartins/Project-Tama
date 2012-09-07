@@ -1,7 +1,8 @@
-package com.project_tama;
+package com.project_tama.main;
 
 import android.view.SurfaceHolder;
 
+import com.project_tama.GameLoop;
 
 public class CityCallback implements SurfaceHolder.Callback {
 	private GameLoop gloop;

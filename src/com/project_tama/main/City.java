@@ -1,10 +1,14 @@
-package com.project_tama;
+package com.project_tama.main;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.SurfaceView;
+
+import com.project_tama.R;
+import com.project_tama.tamamon.Tamamon;
 
 public class City extends SurfaceView {
 	private Tamamon tama;
@@ -16,14 +20,12 @@ public class City extends SurfaceView {
 		/* In order to draw, we should make a explicit call */
 		getHolder().addCallback(new CityCallback(this));
 
-		/* Drawing the Tamamon sprite */
-		tama = new Tamamon(this, BitmapFactory.decodeResource(getResources(), R.drawable.yoyo));
-		
+		tama = new Tamamon(BitmapFactory.decodeResource(getResources(), R.drawable.yoyo));
 		texture = BitmapFactory.decodeResource(getResources(), R.drawable.texture);
 	}
 
 	@Override
-	protected void onDraw(Canvas canvas) {
+	public void onDraw(Canvas canvas) {
 		drawTexture(canvas);
 		
 		tama.drawMe(canvas);
@@ -37,6 +39,12 @@ public class City extends SurfaceView {
 			canvas.drawBitmap(texture, textureWidth*i, 0, null);
 			canvas.drawBitmap(texture, textureWidth*i, textureHeight, null);	
 		}
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TO-DO Make yoyo go to touched place
+		return false;
 	}
 	
 }
