@@ -8,7 +8,7 @@ public class GameLoop extends Thread {
 	private City city;
 	private boolean running = false;
 
-	static final long FPS = 10;
+	static final long FPS = 15;
 	static final long ticksPS = 1000/FPS;
 
 	public GameLoop(City city) {

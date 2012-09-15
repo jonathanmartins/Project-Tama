@@ -31,6 +31,12 @@ public class City extends SurfaceView {
 		tama.drawMe(canvas);
 	}
 	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		tama.walkTo(event.getX(), event.getY());
+		return super.onTouchEvent(event);
+	}
+	
 	private void drawTexture(Canvas canvas) {
 		int textureWidth = texture.getWidth(), textureHeight = texture.getHeight();
 		
@@ -39,12 +45,6 @@ public class City extends SurfaceView {
 			canvas.drawBitmap(texture, textureWidth*i, 0, null);
 			canvas.drawBitmap(texture, textureWidth*i, textureHeight, null);	
 		}
-	}
-	
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		// TO-DO Make yoyo go to touched place
-		return false;
 	}
 	
 }
