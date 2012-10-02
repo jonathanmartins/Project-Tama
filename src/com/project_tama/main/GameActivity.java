@@ -1,15 +1,18 @@
 package com.project_tama.main;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class MainActivity extends Activity {
+public class GameActivity extends Activity {
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
+    	
+    	Intent playGame = getIntent();
 
         /* Make this activity fullscreen! */
         requestWindowFeature(Window.FEATURE_NO_TITLE);

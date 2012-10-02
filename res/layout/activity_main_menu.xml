@@ -1,0 +1,40 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:stretchColumns="1" >
+
+    <TableRow>
+        <Button
+            android:id="@+id/start_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/gamepad"
+            android:text="@string/btn_start_game"
+            android:padding="3dp"
+            android:onClick="startGame" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/help"
+            android:text="@string/btn_settings_game"
+            android:padding="3dp"
+            android:onClick="editSettings" />
+    </TableRow>
+    
+    <TableRow>
+        <Button
+            android:id="@+id/exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/cancel"
+            android:text="@string/btn_exit_game"
+            android:padding="3dp"
+            android:onClick="exitGame" />
+    </TableRow>
+    
+</TableLayout>
