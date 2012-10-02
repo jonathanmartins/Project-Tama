@@ -26,15 +26,4 @@
             android:onClick="editSettings" />
     </TableRow>
     
-    <TableRow>
-        <Button
-            android:id="@+id/exit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/cancel"
-            android:text="@string/btn_exit_game"
-            android:padding="3dp"
-            android:onClick="exitGame" />
-    </TableRow>
-    
 </TableLayout>
