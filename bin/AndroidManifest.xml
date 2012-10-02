@@ -7,10 +7,10 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
 
-    <application>
+    <application
+        android:screenOrientation="landscape" >
         <activity
-            android:name=".main.MainMenuActivity"
-            android:screenOrientation="landscape" >
+            android:name=".main.MainMenuActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,12 +18,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.GameActivity"
-            android:screenOrientation="landscape" >
+            android:name=".main.GameActivity" >
         </activity>
         <activity
-            android:name=".main.SettingsActivity"
-            android:screenOrientation="landscape" >
+            android:name=".main.SettingsActivity" >
         </activity>
     </application>
 
