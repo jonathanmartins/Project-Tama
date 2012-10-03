@@ -1,29 +1,33 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:stretchColumns="1" >
+    android:orientation="horizontal"
+    android:stretchColumns="1"
+    tools:context=".main.MainMenuActivity" >
 
-    <TableRow>
+    <TableRow
+        android:padding="10dp">
         <Button
             android:id="@+id/start_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/gamepad"
-            android:text="@string/btn_start_game"
-            android:padding="3dp"
-            android:onClick="startGame" />
+            android:drawableTop="@drawable/start_game"
+            android:onClick="startGame"
+            android:padding="10dp"
+            android:text="@string/btn_start_game" />
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:padding="10dp">
         <Button
             android:id="@+id/settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/help"
-            android:text="@string/btn_settings_game"
-            android:padding="3dp"
-            android:onClick="editSettings" />
+            android:onClick="editSettings"
+            android:padding="10dp"
+            android:text="@string/btn_settings_game" />
     </TableRow>
-    
+
 </TableLayout>

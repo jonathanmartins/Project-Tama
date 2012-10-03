@@ -13,6 +13,7 @@ public class GameActivity extends Activity {
     	super.onCreate(savedInstanceState);
     	
     	Intent playGame = getIntent();
+    	playGame.getAction();
 
         /* Make this activity fullscreen! */
         requestWindowFeature(Window.FEATURE_NO_TITLE);
