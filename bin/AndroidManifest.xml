@@ -9,21 +9,27 @@
 
     <application android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" >
         <activity
-            android:name=".main.MainMenuActivity"
+            android:name=".activities.view.MainMenuActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        
+        <activity
+            android:name=".activities.city.CityActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        
+        <activity
+            android:name=".activities.view.SettingsActivity"
+            android:screenOrientation="landscape" >
+        </activity>
+        
+        <activity
+            android:name=".activities.video.VideoActivity"
             android:screenOrientation="landscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".main.GameActivity"
-            android:screenOrientation="landscape" >
-        </activity>
-        <activity
-            android:name=".main.SettingsActivity"
-            android:screenOrientation="landscape" >
         </activity>
     </application>
 
