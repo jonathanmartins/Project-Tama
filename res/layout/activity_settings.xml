@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/volume_on"
+            android:onClick="onClick"
             android:padding="10dp"
             android:text="@string/sound" />
     </LinearLayout>
@@ -32,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/enable"
+            android:onClick="onClick"
             android:padding="10dp"
             android:text="@string/vibrate" />
     </LinearLayout>

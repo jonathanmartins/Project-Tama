@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 
 public class MainMenuActivity extends Activity {
 
@@ -24,24 +23,22 @@ public class MainMenuActivity extends Activity {
 	}
 
 	public void startGame(View view){
-		Button startGame = (Button) findViewById(R.id.start_game);
-
-		startGame.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent startGame = new Intent(v.getContext(), GameActivity.class);
-				startActivity(startGame);
-			}
-		});
+		Intent startGame = new Intent(view.getContext(), GameActivity.class);
+		startActivity(startGame);
 	}
 
 	public void editSettings(View view){
-		Button editSettings = (Button) findViewById(R.id.settings);
+		//Button editSettings = (Button) findViewById(R.id.settings);
 
-		editSettings.setOnClickListener(new View.OnClickListener() {
+		Intent settings = new Intent(view.getContext(), SettingsActivity.class);
+		startActivity(settings);
+
+		/*editSettings.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Intent settings = new Intent(v.getContext(), SettingsActivity.class);
 				startActivity(settings);
 			}
 		});
+		 */
 	}
 }
