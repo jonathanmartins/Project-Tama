@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp" >
+        android:padding="12dp" >
 
         <Button
             android:id="@+id/sound_button"
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/volume_on"
             android:onClick="onClick"
-            android:padding="10dp"
+            android:padding="12dp"
             android:text="@string/sound" />
     </LinearLayout>
 
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp" >
+        android:padding="12dp" >
 
         <Button
             android:id="@+id/vibrate_button"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:drawableRight="@drawable/enable"
             android:onClick="onClick"
-            android:padding="10dp"
+            android:padding="12dp"
             android:text="@string/vibrate" />
     </LinearLayout>
 

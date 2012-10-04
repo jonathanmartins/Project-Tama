@@ -30,4 +30,11 @@
 		<nature>com.android.ide.eclipse.adt.AndroidNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>res/drawable-mdpi/disable_vibrate.png</name>
+			<type>1</type>
+			<location>/home/jonhmbc/Área de trabalho/Icones Tama Project/1_navigation_cancel.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>

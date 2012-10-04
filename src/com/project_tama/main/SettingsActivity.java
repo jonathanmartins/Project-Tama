@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -46,6 +47,25 @@ public class SettingsActivity extends Activity {
 	public void setText(){
 		btn_sound.setText(settingsHolder[0] ? "Sound OFF" : "Sound ON");
 		btn_vibrate.setText(settingsHolder[1] ? "Vibrate OFF" : "Vibrate ON");
+		
+		Drawable sound_image = null;
+		Drawable vibrate_image = null;
+
+		if(settingsHolder[0]){
+			sound_image = getResources().getDrawable(R.drawable.volume_off);
+			btn_sound.setCompoundDrawablesWithIntrinsicBounds(null, null, sound_image, null);
+		}else{
+			sound_image = getResources().getDrawable(R.drawable.volume_on);
+			btn_sound.setCompoundDrawablesWithIntrinsicBounds(null, null, sound_image, null);
+		}
+
+		if(settingsHolder[1]){
+			vibrate_image = getResources().getDrawable(R.drawable.disable);
+			btn_vibrate.setCompoundDrawablesWithIntrinsicBounds(null, null, vibrate_image, null);
+		}else{
+			vibrate_image = getResources().getDrawable(R.drawable.enable);
+			btn_vibrate.setCompoundDrawablesWithIntrinsicBounds(null, null, vibrate_image, null);
+		}
 	}
 	
 	public void onClick(View view){
