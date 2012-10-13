@@ -1,68 +1,77 @@
 package com.project_tama.tamamon;
 
-import com.project_tama.R;
-import com.project_tama.tamamon.actions.controller.ActionController;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
+import com.project_tama.R;
+
 public class Tamamon {
 
-	private ActionController controller;
-	
+	private int currentFrame = 0;
+
 	private int toX = 0;
 	private int toY = 0;
 	private int x = 0;
 	private int y = 0;
 
-	private int xSpeed = 10;
-	private int ySpeed = 10;
+	private int xSpeed = 5;
+	private int ySpeed = 5;
 
 	private Bitmap bmp;
+	private int width;
+	private int height;
 
 	public Tamamon(Context context) {
-		this.bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.yoyo);
-		this.controller = new ActionController();
+		this.bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.bub);
+		this.width =  bmp.getWidth() / 6;
+		this.height = bmp.getHeight() / 4;
 	}
 
 	public void drawMe(Canvas canvas) {
-		canvas.drawBitmap(bmp, update(canvas), controller.dst(x, y), null);
+
+		Rect src = walk();
+		Rect dst = new Rect(x, y, x + width, y + height);
+		canvas.drawBitmap(bmp, src, dst, null);
 	}
 
 	public void walkTo(float x, float y) {
-		this.toX = Float.valueOf(x).intValue();
-		this.toY = Float.valueOf(y).intValue();
+		this.toX = Float.valueOf(x).intValue() + (5 - Float.valueOf(x).intValue()%5);
+		this.toY = Float.valueOf(y).intValue() + (5 - Float.valueOf(y).intValue()%5);
 	}
 
-	private Rect update(Canvas canvas) {
-		if (isStopped()) {
-			return controller.stand(ySpeed);
-		} else {
-			walk(canvas);
-			return controller.walk(xSpeed);
-		}
-	}
+	private Rect walk() {
+		if (toX != x || toY != y) {
+			if (toX > x) {
+				x += xSpeed;
+				int h = ((++currentFrame%2)+2)*height;
+				int w = 1*width;
+				return new Rect(w, h, w+width, h+height);
+			} else if (toX < x) {
+				x -= xSpeed;
+				int h = (++currentFrame%2)*height;
+				int w = 1*width;
+				return new Rect(w, h, w+width, h+height);
+			}
 
-	private boolean isStopped() {
-		return toX == x && Math.abs(y - toY)<10;
-	}
-
-	private void walk(Canvas canvas) {
-		xSpeed = toX < x ? -10 : 10;
-		if (Math.abs(toX - x) >= 10) {
-			x += xSpeed;
+			if (toY > y) {
+				y += ySpeed;
+				int h = ((++currentFrame%2)+2)*height;
+				int w = 0*width;
+				return new Rect(w, h, w+width, h+height);
+			} else if (toY < y) {
+				y -= ySpeed;
+				int h = (++currentFrame%2)*height;
+				int w = 0*width;
+				return new Rect(w, h, w+width, h+height);
+			}
 		} else {
-			x +=  toX > x ? toX-x : x-toX;
+			int h = 2*height;
+			int w = 0*width;
+			return new Rect(w, h, w+width, h+height);
 		}
-
-		ySpeed = toY < y ? -10 : 10;
-		if (Math.abs(toY - y) >= 10) {
-			y += ySpeed;
-		} else {
-			y +=  toY > y ? toY-y : y-toY;
-		}
+		return null;
 	}
 }

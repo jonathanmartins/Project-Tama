@@ -1,0 +1,17 @@
+*.class
+nbproject/private/
+
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+
+*.apk
+*.ap_
+*.dex
+
+bin/
+gen/
+
+local.properties
