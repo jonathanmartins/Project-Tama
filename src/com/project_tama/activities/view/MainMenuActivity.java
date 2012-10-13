@@ -8,6 +8,7 @@ import android.view.View;
 import com.project_tama.R;
 import com.project_tama.activities.AbstractActivity;
 import com.project_tama.activities.city.CityActivity;
+import com.project_tama.services.music.BackgroundSound;
 
 public class MainMenuActivity extends AbstractActivity {
 
@@ -15,6 +16,9 @@ public class MainMenuActivity extends AbstractActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
+		
+		Intent music = new Intent(this, BackgroundSound.class);
+		startService(music);
 	}
 
 	public void startGame(View view){
@@ -23,17 +27,7 @@ public class MainMenuActivity extends AbstractActivity {
 	}
 
 	public void editSettings(View view){
-		//Button editSettings = (Button) findViewById(R.id.settings);
-
 		Intent settings = new Intent(view.getContext(), SettingsActivity.class);
 		startActivity(settings);
-
-		/*editSettings.setOnClickListener(new View.OnClickListener() {
-			public void onClick(View v) {
-				Intent settings = new Intent(v.getContext(), SettingsActivity.class);
-				startActivity(settings);
-			}
-		});
-		 */
 	}
 }

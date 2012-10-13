@@ -1,5 +1,7 @@
 package com.project_tama.tamamon.actions;
 
+import com.project_tama.tamamon.actions.controller.ActionType;
+
 public class ActionFrontStand extends ActionType {
 	public ActionFrontStand() {
 		this.frame = 0;

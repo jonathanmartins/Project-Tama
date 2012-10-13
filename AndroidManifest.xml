@@ -12,17 +12,14 @@
             android:name=".activities.view.MainMenuActivity"
             android:screenOrientation="landscape" >
         </activity>
-        
         <activity
             android:name=".activities.city.CityActivity"
             android:screenOrientation="landscape" >
         </activity>
-        
         <activity
             android:name=".activities.view.SettingsActivity"
             android:screenOrientation="landscape" >
         </activity>
-        
         <activity
             android:name=".activities.video.VideoActivity"
             android:screenOrientation="landscape" >
@@ -31,6 +28,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".services.music.BackgroundSound"
+            android:enabled="true">
+        </service>
     </application>
 
 </manifest>

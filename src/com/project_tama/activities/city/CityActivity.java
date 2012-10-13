@@ -6,15 +6,25 @@ import android.os.Bundle;
 import com.project_tama.activities.AbstractActivity;
 
 public class CityActivity extends AbstractActivity {
+	
+	private City city;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(new City(this));
+		city = new City(this);
+		setContentView(city);
 
 		Intent playGame = getIntent();
 		playGame.getAction();
-
 	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		
+		city.onPause();
+	}
+	
 }

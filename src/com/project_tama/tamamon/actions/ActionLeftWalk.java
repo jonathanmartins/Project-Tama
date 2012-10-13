@@ -1,5 +1,7 @@
 package com.project_tama.tamamon.actions;
 
+import com.project_tama.tamamon.actions.controller.ActionType;
+
 public class ActionLeftWalk extends ActionType {
 	public ActionLeftWalk() {
 		this.frame = 0;

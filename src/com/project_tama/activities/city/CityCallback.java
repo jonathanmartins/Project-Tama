@@ -5,6 +5,7 @@ import android.view.SurfaceHolder;
 import com.project_tama.GameLoop;
 
 public class CityCallback implements SurfaceHolder.Callback {
+
 	private GameLoop gloop;
 
 	public CityCallback(City city) {
@@ -19,7 +20,5 @@ public class CityCallback implements SurfaceHolder.Callback {
 		gloop.start();
 	}
 
-	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-		//TO-DO
-	}
+	public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) { }
 }

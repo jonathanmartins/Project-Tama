@@ -1,15 +1,20 @@
 package com.project_tama.tamamon;
 
+import com.project_tama.R;
+import com.project_tama.tamamon.actions.controller.ActionController;
+
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
 public class Tamamon {
 
 	private ActionController controller;
+	
 	private int toX = 0;
 	private int toY = 0;
-
 	private int x = 0;
 	private int y = 0;
 
@@ -18,8 +23,8 @@ public class Tamamon {
 
 	private Bitmap bmp;
 
-	public Tamamon(Bitmap bmp) {
-		this.bmp = bmp;
+	public Tamamon(Context context) {
+		this.bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.yoyo);
 		this.controller = new ActionController();
 	}
 
@@ -60,5 +65,4 @@ public class Tamamon {
 			y +=  toY > y ? toY-y : y-toY;
 		}
 	}
-
 }

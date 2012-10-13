@@ -46,6 +46,7 @@ public class GameLoop extends Thread {
 					city.getHolder().unlockCanvasAndPost(c);
 				}
 			}
+			
 			sleepTime = ticksPS - (System.currentTimeMillis() - iTime);
 			try {
 				if (sleepTime > 0)
@@ -56,5 +57,4 @@ public class GameLoop extends Thread {
 			}
 		}
 	}
-
 }

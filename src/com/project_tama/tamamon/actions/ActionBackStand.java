@@ -1,5 +1,7 @@
 package com.project_tama.tamamon.actions;
 
+import com.project_tama.tamamon.actions.controller.ActionType;
+
 public class ActionBackStand extends ActionType {
 	public ActionBackStand() {
 		//(left, top, right bottom). 
