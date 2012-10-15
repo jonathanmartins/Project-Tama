@@ -14,7 +14,7 @@ import com.project_tama.services.music.BackgroundSound;
 public class SettingsActivity extends AbstractActivity {
 
 	private static final String SETTINGS_PREFS = "gameSettings";
-	private boolean[] settingsHolder = new boolean[2];
+	private boolean sound, vibrate;
 	private Button btn_sound, btn_vibrate;
 
 	@Override
@@ -28,68 +28,54 @@ public class SettingsActivity extends AbstractActivity {
 		btn_sound = (Button) findViewById(R.id.sound_button);
 		btn_vibrate = (Button) findViewById(R.id.vibrate_button);
 
-		getSettings();
-		setText();
-	}
-
-	public void getSettings() {
-		SharedPreferences settings = getSharedPreferences(SETTINGS_PREFS, MODE_PRIVATE);
-
-		settingsHolder[0] = settings.getBoolean("sound", true);
-		settingsHolder[1] = settings.getBoolean("vibrate", true);
-	}
-
-	public void setText() {
-		btn_sound.setText(settingsHolder[0] ? "Sound OFF" : "Sound ON");
-		btn_vibrate.setText(settingsHolder[1] ? "Vibrate OFF" : "Vibrate ON");
-
-		Drawable sound_image = null;
-		Drawable vibrate_image = null;
-
-		if (settingsHolder[0]) {
-			sound_image = getResources().getDrawable(R.drawable.volume_off);
-			btn_sound.setCompoundDrawablesWithIntrinsicBounds(null, null, sound_image, null);
-		} else{
-			sound_image = getResources().getDrawable(R.drawable.volume_on);
-			btn_sound.setCompoundDrawablesWithIntrinsicBounds(null, null, sound_image, null);
-		}
-
-		if (settingsHolder[1]) {
-			vibrate_image = getResources().getDrawable(R.drawable.disable);
-			btn_vibrate.setCompoundDrawablesWithIntrinsicBounds(null, null, vibrate_image, null);
-		} else{
-			vibrate_image = getResources().getDrawable(R.drawable.enable);
-			btn_vibrate.setCompoundDrawablesWithIntrinsicBounds(null, null, vibrate_image, null);
-		}
+		notifyButtons();
 	}
 
 	public void onClick(View view) {
 		SharedPreferences settings = getSharedPreferences(SETTINGS_PREFS, MODE_PRIVATE);
 		SharedPreferences.Editor editor = settings.edit();
-
+		
 		switch (view.getId()) {
 		case R.id.sound_button:
-			editor.putBoolean("sound", !settingsHolder[0]);
-			if (settingsHolder[0]) {
-				Intent music = new Intent(this, BackgroundSound.class);
-				startService(music);
-			} else {
-				Intent music = new Intent(this, BackgroundSound.class);
-				stopService(music);
-			}
+			editor.putBoolean("sound", !sound).commit();
+			notifyMusicService(sound);
 			break;
-
 		case R.id.vibrate_button:
-			editor.putBoolean("vibrate", !settingsHolder[1]);
+			editor.putBoolean("vibrate", !vibrate).commit();
 			break;
-
 		default:
 			break;
 		}
+		
+		notifyButtons();
+	}
+	
+	private void notifyMusicService(boolean active) {
+		Intent music = new Intent(this, BackgroundSound.class);
+		if (BackgroundSound.isPlaying) {
+			BackgroundSound.isPlaying = false;
+			stopService(music);
+		} else {
+			BackgroundSound.isPlaying = true;
+			startService(music);
+		}
+	}
+	
+	private void notifyButtons() {
+		SharedPreferences settings = getSharedPreferences(SETTINGS_PREFS, MODE_PRIVATE);
 
-		editor.commit();
+		sound = settings.getBoolean("sound", true);
+		vibrate = settings.getBoolean("vibrate", true);
+		
+		btn_sound.setText(sound ? "Sound ON" : "Sound OFF");
+		btn_vibrate.setText(vibrate ? "Vibrate ON" : "Vibrate OFF");
 
-		getSettings();
-		setText();
+		Drawable sound_image = sound ?
+				getResources().getDrawable(R.drawable.volume_on) : getResources().getDrawable(R.drawable.volume_off);
+		btn_sound.setCompoundDrawablesWithIntrinsicBounds(null, null, sound_image, null);
+
+		Drawable vibrate_image = vibrate ?
+				getResources().getDrawable(R.drawable.enable) : getResources().getDrawable(R.drawable.disable);
+		btn_vibrate.setCompoundDrawablesWithIntrinsicBounds(null, null, vibrate_image, null);
 	}
 }

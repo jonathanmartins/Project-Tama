@@ -10,32 +10,32 @@ import android.graphics.Rect;
 
 public class Background {
 
-	private Bitmap bmp;
-	private Bitmap wmill;
-	private int currentFrame;
+	private Bitmap bkground;
+	private Bitmap warn;
+	private Bitmap pkball;
 	
 	public Background(Context context) {
-		bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.texture);
-		wmill = BitmapFactory.decodeResource(context.getResources(), R.drawable.windmill);
-		currentFrame = 0;
+		bkground = BitmapFactory.decodeResource(context.getResources(), R.drawable.texture);
+		warn = BitmapFactory.decodeResource(context.getResources(), R.drawable.warn);
+		pkball = BitmapFactory.decodeResource(context.getResources(), R.drawable.pokeball);
 	}
 	
 	public void drawMe(Canvas canvas) {
 		int wi = 0;
 		do {
-			canvas.drawBitmap(bmp, bmp.getWidth()*wi, 0, null);
+			canvas.drawBitmap(bkground, bkground.getWidth()*wi, 0, null);
 			int hi = 1;
 			do {
-				canvas.drawBitmap(bmp, bmp.getWidth()*wi, bmp.getHeight()*hi, null);
+				canvas.drawBitmap(bkground, bkground.getWidth()*wi, bkground.getHeight()*hi, null);
 				hi++;
-			} while(bmp.getHeight()*hi < canvas.getHeight());
+			} while(bkground.getHeight()*hi < canvas.getHeight());
 			wi++;
-		} while (bmp.getWidth()*wi < canvas.getWidth());
+		} while (bkground.getWidth()*wi < canvas.getWidth());
 		
-		int w =  (++currentFrame % 3) * (wmill.getWidth() / 3);
-		int h = canvas.getWidth() - (wmill.getWidth() / 3);
-		Rect src = new Rect(w, 0, w+wmill.getWidth(), wmill.getHeight());
-		Rect dst = new Rect(h, 0, h+wmill.getWidth(), wmill.getHeight());
-		canvas.drawBitmap(wmill, src, dst, null);
+		Rect dst = new Rect(20,20,20+pkball.getWidth(),20+pkball.getHeight()); 
+		canvas.drawBitmap(pkball, null, dst, null);
+		
+		dst = new Rect(20,20,20+warn.getWidth(),20+warn.getHeight());
+		canvas.drawBitmap(warn, null, dst, null);
 	}
 }

@@ -2,6 +2,7 @@ package com.project_tama.activities.view;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -16,6 +17,9 @@ public class MainMenuActivity extends AbstractActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
+		
+		SharedPreferences settings = getSharedPreferences("gameSettings", MODE_PRIVATE);
+		settings.edit().putBoolean("sound", true).commit();
 		
 		Intent music = new Intent(this, BackgroundSound.class);
 		startService(music);
