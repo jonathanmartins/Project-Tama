@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.project_tama.R;
-import com.project_tama.activities.AbstractActivity;
 import com.project_tama.activities.city.CityActivity;
+import com.project_tama.services.AbstractActivity;
 import com.project_tama.services.music.BackgroundSound;
 
 public class MainMenuActivity extends AbstractActivity {
@@ -19,10 +19,12 @@ public class MainMenuActivity extends AbstractActivity {
 		setContentView(R.layout.activity_main_menu);
 		
 		SharedPreferences settings = getSharedPreferences("gameSettings", MODE_PRIVATE);
-		settings.edit().putBoolean("sound", true).commit();
-		
-		Intent music = new Intent(this, BackgroundSound.class);
-		startService(music);
+		if (settings.getBoolean("sound", true)) {
+			settings.edit().putBoolean("sound", true).commit();
+			
+			Intent music = new Intent(this, BackgroundSound.class);
+			startService(music);
+		}
 	}
 
 	public void startGame(View view){

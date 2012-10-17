@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.project_tama.R;
-import com.project_tama.activities.AbstractActivity;
+import com.project_tama.services.AbstractActivity;
 import com.project_tama.services.music.BackgroundSound;
 
 public class SettingsActivity extends AbstractActivity {
@@ -28,7 +28,7 @@ public class SettingsActivity extends AbstractActivity {
 		btn_sound = (Button) findViewById(R.id.sound_button);
 		btn_vibrate = (Button) findViewById(R.id.vibrate_button);
 
-		notifyButtons();
+		updateButtons();
 	}
 
 	public void onClick(View view) {
@@ -38,7 +38,7 @@ public class SettingsActivity extends AbstractActivity {
 		switch (view.getId()) {
 		case R.id.sound_button:
 			editor.putBoolean("sound", !sound).commit();
-			notifyMusicService(sound);
+			notifyMusicService(settings.getBoolean("sound", true));
 			break;
 		case R.id.vibrate_button:
 			editor.putBoolean("vibrate", !vibrate).commit();
@@ -47,21 +47,19 @@ public class SettingsActivity extends AbstractActivity {
 			break;
 		}
 		
-		notifyButtons();
+		updateButtons();
 	}
 	
-	private void notifyMusicService(boolean active) {
+	private void notifyMusicService(boolean activate) {
 		Intent music = new Intent(this, BackgroundSound.class);
-		if (BackgroundSound.isPlaying) {
-			BackgroundSound.isPlaying = false;
-			stopService(music);
-		} else {
-			BackgroundSound.isPlaying = true;
+		if (activate) {
 			startService(music);
+		} else {
+			stopService(music);
 		}
 	}
 	
-	private void notifyButtons() {
+	private void updateButtons() {
 		SharedPreferences settings = getSharedPreferences(SETTINGS_PREFS, MODE_PRIVATE);
 
 		sound = settings.getBoolean("sound", true);

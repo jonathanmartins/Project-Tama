@@ -3,7 +3,7 @@ package com.project_tama.activities.city;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.project_tama.activities.AbstractActivity;
+import com.project_tama.services.AbstractActivity;
 
 public class CityActivity extends AbstractActivity {
 	

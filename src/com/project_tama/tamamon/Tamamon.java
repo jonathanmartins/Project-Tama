@@ -1,5 +1,7 @@
 package com.project_tama.tamamon;
 
+import java.util.Random;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +12,7 @@ import com.project_tama.R;
 
 public class Tamamon {
 
+	private int id;
 	private int currentFrame = 0;
 
 	private int toX = 0;
@@ -25,13 +28,13 @@ public class Tamamon {
 	private int height;
 
 	public Tamamon(Context context) {
-		this.bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.bub);
-		this.width =  bmp.getWidth() / 6;
+		this.bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.inits);
+		this.width =  bmp.getWidth() / 18;
 		this.height = bmp.getHeight() / 4;
+		this.id = new Random().nextInt(3);
 	}
 
 	public void drawMe(Canvas canvas) {
-
 		Rect src = walk();
 		Rect dst = new Rect(x, y, x + width, y + height);
 		canvas.drawBitmap(bmp, src, dst, null);
@@ -46,30 +49,30 @@ public class Tamamon {
 		if (toX != x || toY != y) {
 			if (toX > x) {
 				x += xSpeed;
-				int h = ((++currentFrame%2)+2)*height;
-				int w = 1*width;
+				int h = ((++currentFrame%2)+2)*height; 
+				int w = 3*width;
 				return new Rect(w, h, w+width, h+height);
 			} else if (toX < x) {
 				x -= xSpeed;
 				int h = (++currentFrame%2)*height;
-				int w = 1*width;
+				int w = 3*width;
 				return new Rect(w, h, w+width, h+height);
 			}
 
 			if (toY > y) {
 				y += ySpeed;
 				int h = ((++currentFrame%2)+2)*height;
-				int w = 0*width;
+				int w = 2*width;
 				return new Rect(w, h, w+width, h+height);
 			} else if (toY < y) {
 				y -= ySpeed;
 				int h = (++currentFrame%2)*height;
-				int w = 0*width;
+				int w = 2*width;
 				return new Rect(w, h, w+width, h+height);
 			}
 		} else {
 			int h = 2*height;
-			int w = 0*width;
+			int w = 2*width;
 			return new Rect(w, h, w+width, h+height);
 		}
 		return null;

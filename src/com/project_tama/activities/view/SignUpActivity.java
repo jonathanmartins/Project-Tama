@@ -8,7 +8,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.project_tama.activities.AbstractActivity;
+import com.project_tama.services.AbstractActivity;
 
 public class SignUpActivity extends AbstractActivity {
 	
@@ -18,6 +18,8 @@ public class SignUpActivity extends AbstractActivity {
 			List<NameValuePair> params = new ArrayList<NameValuePair>(1);
 			params.add(new BasicNameValuePair("email", email));
 			url.setEntity(new UrlEncodedFormEntity(params));
+			
+			
 		} catch (Exception e) {
 			//TO-DO
 		}		
