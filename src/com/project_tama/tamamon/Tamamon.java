@@ -1,80 +1,24 @@
 package com.project_tama.tamamon;
 
-import java.util.Random;
-
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 
-import com.project_tama.R;
+import com.project_tama.tamamon.action.ActionController;
 
 public class Tamamon {
 
-	private int id;
-	private int currentFrame = 0;
-
-	private int toX = 0;
-	private int toY = 0;
-	private int x = 0;
-	private int y = 0;
-
-	private int xSpeed = 5;
-	private int ySpeed = 5;
-
-	private Bitmap bmp;
-	private int width;
-	private int height;
+	private ActionController controller;
 
 	public Tamamon(Context context) {
-		this.bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.inits);
-		this.width =  bmp.getWidth() / 18;
-		this.height = bmp.getHeight() / 4;
-		this.id = new Random().nextInt(3);
+		controller = new ActionController(context);
 	}
 
 	public void drawMe(Canvas canvas) {
-		Rect src = walk();
-		Rect dst = new Rect(x, y, x + width, y + height);
-		canvas.drawBitmap(bmp, src, dst, null);
+		controller.drawOnCanvas(canvas);
 	}
 
-	public void walkTo(float x, float y) {
-		this.toX = Float.valueOf(x).intValue() + (5 - Float.valueOf(x).intValue()%5);
-		this.toY = Float.valueOf(y).intValue() + (5 - Float.valueOf(y).intValue()%5);
+	public void walkTo(float x, float y, int screenWidth, int screenHeight) {
+		controller.notifyMotor(x, y, screenWidth, screenHeight);
 	}
-
-	private Rect walk() {
-		if (toX != x || toY != y) {
-			if (toX > x) {
-				x += xSpeed;
-				int h = ((++currentFrame%2)+2)*height; 
-				int w = 3*width;
-				return new Rect(w, h, w+width, h+height);
-			} else if (toX < x) {
-				x -= xSpeed;
-				int h = (++currentFrame%2)*height;
-				int w = 3*width;
-				return new Rect(w, h, w+width, h+height);
-			}
-
-			if (toY > y) {
-				y += ySpeed;
-				int h = ((++currentFrame%2)+2)*height;
-				int w = 2*width;
-				return new Rect(w, h, w+width, h+height);
-			} else if (toY < y) {
-				y -= ySpeed;
-				int h = (++currentFrame%2)*height;
-				int w = 2*width;
-				return new Rect(w, h, w+width, h+height);
-			}
-		} else {
-			int h = 2*height;
-			int w = 2*width;
-			return new Rect(w, h, w+width, h+height);
-		}
-		return null;
-	}
+	
 }

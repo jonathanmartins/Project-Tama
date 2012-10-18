@@ -32,7 +32,7 @@ public class City extends SurfaceView {
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		tama.walkTo(event.getX(), event.getY());
+		tama.walkTo(event.getX(), event.getY(), this.getWidth(), this.getHeight());
 		return super.onTouchEvent(event);
 	}
 	

@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.project_tama.R;
+import com.project_tama.activities.AbstractActivity;
 import com.project_tama.activities.city.CityActivity;
-import com.project_tama.services.AbstractActivity;
 import com.project_tama.services.music.BackgroundSound;
 
 public class MainMenuActivity extends AbstractActivity {

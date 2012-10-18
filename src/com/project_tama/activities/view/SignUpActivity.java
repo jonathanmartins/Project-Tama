@@ -8,7 +8,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.project_tama.services.AbstractActivity;
+import com.project_tama.activities.AbstractActivity;
 
 public class SignUpActivity extends AbstractActivity {
 	

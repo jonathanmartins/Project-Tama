@@ -1,4 +1,4 @@
-package com.project_tama.tamamon.designer;
+package com.project_tama.tamamon.action;
 
 import android.graphics.Rect;
 
@@ -14,6 +14,18 @@ public class RectFactory {
 
 	public Rect createRect(int x, int y) {
 		return new Rect(x, y, x+width, y+height);
+	}
+	
+	public Rect createRect(Rect r) {
+		return new Rect(r);
+	}
+
+	public int getHeight() {
+		return height;
+	}
+	
+	public int getWidth() {
+		return width;
 	}
 	
 }

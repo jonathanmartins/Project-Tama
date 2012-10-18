@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.project_tama.R;
-import com.project_tama.services.AbstractActivity;
+import com.project_tama.activities.AbstractActivity;
 import com.project_tama.services.music.BackgroundSound;
 
 public class SettingsActivity extends AbstractActivity {
@@ -65,15 +65,15 @@ public class SettingsActivity extends AbstractActivity {
 		sound = settings.getBoolean("sound", true);
 		vibrate = settings.getBoolean("vibrate", true);
 		
-		btn_sound.setText(sound ? "Sound ON" : "Sound OFF");
-		btn_vibrate.setText(vibrate ? "Vibrate ON" : "Vibrate OFF");
+		btn_sound.setText(sound ? "Sound OFF" : "Sound ON");
+		btn_vibrate.setText(vibrate ? "Vibrate OFF" : "Vibrate ON");
 
 		Drawable sound_image = sound ?
-				getResources().getDrawable(R.drawable.volume_on) : getResources().getDrawable(R.drawable.volume_off);
+				getResources().getDrawable(R.drawable.volume_off) : getResources().getDrawable(R.drawable.volume_on);
 		btn_sound.setCompoundDrawablesWithIntrinsicBounds(null, null, sound_image, null);
 
 		Drawable vibrate_image = vibrate ?
-				getResources().getDrawable(R.drawable.enable) : getResources().getDrawable(R.drawable.disable);
+				getResources().getDrawable(R.drawable.disable) : getResources().getDrawable(R.drawable.enable);
 		btn_vibrate.setCompoundDrawablesWithIntrinsicBounds(null, null, vibrate_image, null);
 	}
 }

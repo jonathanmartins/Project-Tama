@@ -8,8 +8,8 @@ import android.view.MotionEvent;
 import android.widget.VideoView;
 
 import com.project_tama.R;
+import com.project_tama.activities.AbstractActivity;
 import com.project_tama.activities.view.MainMenuActivity;
-import com.project_tama.services.AbstractActivity;
 
 public class VideoActivity extends AbstractActivity{
 	

@@ -1,4 +1,4 @@
-package com.project_tama.services;
+package com.project_tama.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
