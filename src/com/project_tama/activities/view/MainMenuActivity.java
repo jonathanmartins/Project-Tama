@@ -27,13 +27,21 @@ public class MainMenuActivity extends AbstractActivity {
 		}
 	}
 
-	public void startGame(View view){
-		Intent startGame = new Intent(view.getContext(), CityActivity.class);
-		startActivity(startGame);
-	}
-
-	public void editSettings(View view){
-		Intent settings = new Intent(view.getContext(), SettingsActivity.class);
-		startActivity(settings);
+	public void onClick(View view){
+		switch (view.getId()) {
+		case R.id.start_game:
+			Intent startGame = new Intent(view.getContext(), CityActivity.class);
+			startActivity(startGame);
+			break;
+		case R.id.settings:
+			Intent settings = new Intent(view.getContext(), SettingsActivity.class);
+			startActivity(settings);
+			break;
+		case R.id.account_button:
+			Intent account = new Intent(view.getContext(), AccountActivity.class);
+			startActivity(account);
+		default:
+			break;
+		}
 	}
 }

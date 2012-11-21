@@ -12,5 +12,14 @@
     <string name="music">MUSIC ON</string>
     <string name="vibrate">VIBRATE ON</string>
     <string name="graphics">GRAPHICS ON</string>
+    <string name="email_sign_up">user@email.com</string>
+    <string name="button_sign_up">Registrar</string>
+    <string name="text_sign_up">Novo por aqui? Cadastre-se!</string>
+    <string name="email_sign_in">user@email.com</string>
+    <string name="button_sign_in">Entrar</string>
+    <string name="pass_sign_in">password</string>
+    <string name="text_sign_in">Login</string>
+    <string name="btn_account">Account</string>
+    <string name="title_activity_account">AccountActivity</string>
 
 </resources>

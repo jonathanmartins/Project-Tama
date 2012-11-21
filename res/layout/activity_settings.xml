@@ -1,41 +1,28 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
-    android:orientation="vertical" >
+    android:background="#AA99AA99"
+    android:gravity="center" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/sound_button"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp" >
+        android:drawableRight="@drawable/volume_on"
+        android:onClick="onClick"
+        android:padding="12dp"
+        android:text="@string/sound" />
 
-        <Button
-            android:id="@+id/sound_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/volume_on"
-            android:onClick="onClick"
-            android:padding="12dp"
-            android:text="@string/sound" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/vibrate_button"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp" >
+        android:layout_below="@+id/sound_button"
+        android:drawableRight="@drawable/enable"
+        android:onClick="onClick"
+        android:padding="12dp"
+        android:text="@string/vibrate" />
 
-        <Button
-            android:id="@+id/vibrate_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/enable"
-            android:onClick="onClick"
-            android:padding="12dp"
-            android:text="@string/vibrate" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
