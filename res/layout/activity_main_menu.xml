@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#AA99AA99"
+    android:background="#1c6b6a"
     android:gravity="center" >
 
     <Button
