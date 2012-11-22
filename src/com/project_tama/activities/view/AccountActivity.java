@@ -8,17 +8,25 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.project_tama.R;
 import com.project_tama.activities.AbstractActivity;
 
 public class AccountActivity extends AbstractActivity {
 
+	public static final String LOGIN_PREFS = "login_prefs";
 	private EditText pass_login, email_login, email_register;
+	private Context context;
+	private CheckBox remember;
+	private boolean saveLogin;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,21 +38,60 @@ public class AccountActivity extends AbstractActivity {
 		email_login = (EditText) findViewById(R.id.email_sign_in);
 		pass_login = (EditText) findViewById(R.id.pass_sign_in);
 		email_register = (EditText) findViewById(R.id.email_sign_up);
+		remember = (CheckBox) findViewById(R.id.remember_login);
+		
+		context = getApplicationContext();
+	}
 
+	@Override
+	protected void onResume() {
+		//Recupera os dados em login
+		super.onResume();
+		SharedPreferences login = getSharedPreferences(LOGIN_PREFS, MODE_PRIVATE);
+		
+		saveLogin = login.getBoolean("saveLogin", false);
+		if(saveLogin){
+			email_login.setText(login.getString("email", ""));
+			pass_login.setText(login.getString("password", ""));
+			remember.setChecked(true);
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		saveUser();
+	}
+
+	private void saveUser(){
+		//Salva email e password se requisitado
+		SharedPreferences login = getSharedPreferences(LOGIN_PREFS, MODE_PRIVATE);
+		SharedPreferences.Editor editor = login.edit();
+		
+		if(remember.isChecked()){
+			editor.putString("email", email_login.getText().toString());
+			editor.putString("password", pass_login.getText().toString());
+			editor.putBoolean("saveLogin", true);
+		}else{
+			editor.clear();
+		}
+		editor.commit();
 	}
 
 	public void onClick(View view) {
 
 		switch (view.getId()) {
 		case R.id.button_sign_in:
-			//salvar o login
-			email_login.setText("");
-			email_login.clearFocus();
-			pass_login.setText("");
-			pass_login.clearFocus();
+			saveUser();
+			Toast.makeText(context, "Login efetuado, divirta-se!", Toast.LENGTH_LONG).show();
+			
+			Intent intent = new Intent(view.getContext(), MainMenuActivity.class);
+			startActivity(intent);
 			break;
 		case R.id.button_sign_up:
-			//avisar que sera enviado um email e redirecionar pra algum canto
+			CharSequence text = "Por favor, verifique seu email! Precisamos de confirmação.";
+			Toast.makeText(context, text, Toast.LENGTH_LONG).show();
+
 			String newUser = email_register.getText().toString();
 			signUp(newUser);
 			email_register.setText("");
@@ -61,8 +108,6 @@ public class AccountActivity extends AbstractActivity {
 			List<NameValuePair> params = new ArrayList<NameValuePair>(1);
 			params.add(new BasicNameValuePair("email", email));
 			url.setEntity(new UrlEncodedFormEntity(params));
-
-
 		} catch (Exception e) {
 			//TO-DO
 		}		
