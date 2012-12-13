@@ -54,10 +54,15 @@ public class Tamamon {
 		this.energy = energy;
 	}
 	
+	public Tamamon(String name, int life, int energy){
+		this.name = name;
+		this.life = life;
+		this.energy = energy;
+	}
+	
 	//Using in database
 	public Tamamon(){}
 	
-	//Feito por waldyr
 	public Tamamon(Context context) {
 		controller = new ActionController(context);
 	}
