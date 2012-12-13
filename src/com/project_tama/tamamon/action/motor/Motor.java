@@ -11,7 +11,8 @@ public class Motor {
 	private static final int xSpeed = 5;
 	private static final int ySpeed = 5;
 	
-	private int currentFrame = 0;
+	private int currentFrame;
+	private int id;
 	
 	private int x = 0;
 	private int y = 0;
@@ -19,8 +20,9 @@ public class Motor {
 	private int toX = 0;
 	private int toY = 0;
 	
-	public Motor(int width, int height) {
+	public Motor(int width, int height, int id) {
 		this.factory = new RectFactory(width, height);
+		this.id = id;
 	}
 
 	public void walkTo(float x, float y, int sWidth, int sHeight) {
@@ -45,29 +47,29 @@ public class Motor {
 			if (toX > x) {
 				x += xSpeed;
 				int h = ((++currentFrame%2)+2)*factory.getHeight(); 
-				int w = 3*factory.getWidth();
+				int w = ((id*2)+1)*factory.getWidth();
 				return factory.createRect(w, h);
 			} else if (toX < x) {
 				x -= xSpeed;
 				int h = (++currentFrame%2)*factory.getHeight();
-				int w = 3*factory.getWidth();
+				int w = ((id*2)+1)*factory.getWidth();
 				return factory.createRect(w, h);
 			}
 
 			if (toY > y) {
 				y += ySpeed;
 				int h = ((++currentFrame%2)+2)*factory.getHeight();
-				int w = 2*factory.getWidth();
+				int w = (id*2)*factory.getWidth();
 				return factory.createRect(w, h);
 			} else if (toY < y) {
 				y -= ySpeed;
 				int h = (++currentFrame%2)*factory.getHeight();
-				int w = 2*factory.getWidth();
+				int w = (id*2)*factory.getWidth();
 				return factory.createRect(w, h);
 			}
 		} else {
 			int h = 2*factory.getHeight();
-			int w = 2*factory.getWidth();
+			int w = (id*2)*factory.getWidth();
 			return factory.createRect(w, h);
 		}
 		return null;

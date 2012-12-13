@@ -63,8 +63,8 @@ public class Tamamon {
 	//Using in database
 	public Tamamon(){}
 	
-	public Tamamon(Context context) {
-		controller = new ActionController(context);
+	public Tamamon(Context context, int id) {
+		controller = new ActionController(context, id);
 	}
 
 	public void drawMe(Canvas canvas) {

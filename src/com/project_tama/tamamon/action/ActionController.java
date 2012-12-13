@@ -17,14 +17,14 @@ public class ActionController {
 	
 	private Bitmap bmp;
 	
-	public ActionController(Context context) {
+	public ActionController(Context context, int id) {
 		this.bmp = Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.inits));
 		
 		int width = bmp.getWidth() / 18;
 		int height = bmp.getHeight() / 4;
 		
 		designer = new Designer(width, height);
-		motor = new Motor(width, height);
+		motor = new Motor(width, height, id);
 	}
 	
 	public void drawOnCanvas(Canvas canvas) {

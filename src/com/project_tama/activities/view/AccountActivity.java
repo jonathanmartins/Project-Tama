@@ -124,6 +124,7 @@ public class AccountActivity extends AbstractActivity {
 
 	private void signIn(String email, String password) {
 		SignIn signIn = new SignIn(this);
+		
 		signIn.execute(email, password);
 	}
 
