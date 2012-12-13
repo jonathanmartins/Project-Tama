@@ -2,10 +2,10 @@ package com.project_tama.activities.city;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import com.project_tama.R;
 import com.project_tama.activities.AbstractActivity;
 
