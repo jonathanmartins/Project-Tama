@@ -12,7 +12,7 @@ public class City extends SurfaceView {
 	
 	private CityCallback callback;
 	private Tamamon tama;
-	private Background background; 
+	private Background background;
 
 	public City(Context context) {
 		super(context);

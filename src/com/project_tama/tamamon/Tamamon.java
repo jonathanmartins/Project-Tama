@@ -57,7 +57,6 @@ public class Tamamon {
 	//Using in database
 	public Tamamon(){}
 	
-	//Feito por waldyr
 	public Tamamon(Context context) {
 		controller = new ActionController(context);
 	}

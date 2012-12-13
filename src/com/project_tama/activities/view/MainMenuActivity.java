@@ -30,8 +30,16 @@ public class MainMenuActivity extends AbstractActivity {
 	public void onClick(View view){
 		switch (view.getId()) {
 		case R.id.start_game:
-			Intent startGame = new Intent(view.getContext(), CityActivity.class);
-			startActivity(startGame);
+			SharedPreferences ready = getSharedPreferences("login_prefs", MODE_PRIVATE);
+
+			if (ready.getBoolean("ready", false)) {
+				Intent startGame = new Intent(view.getContext(), CityActivity.class);
+				startActivity(startGame);	
+			} else {
+				Intent signIn = new Intent(view.getContext(), AccountActivity.class);
+				startActivity(signIn);	
+			}
+			
 			break;
 		case R.id.settings:
 			Intent settings = new Intent(view.getContext(), SettingsActivity.class);
