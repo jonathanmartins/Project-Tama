@@ -23,5 +23,6 @@
     <string name="title_activity_account">AccountActivity</string>
     <string name="remember_login">Lembrar-me</string>
     <string name="tamamon_name">tamamon\'s name</string>
+    <string name="new_battle">Batalhar!</string>
 
 </resources>
