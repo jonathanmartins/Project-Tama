@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 
 import com.project_tama.activities.city.texture.Background;
+import com.project_tama.database.DatabaseHandler;
 import com.project_tama.tamamon.Tamamon;
 
 public class City extends SurfaceView {
@@ -20,7 +21,10 @@ public class City extends SurfaceView {
 		callback = new CityCallback(this);
 		getHolder().addCallback(callback);
 
-		tama = new Tamamon(context, 5);
+		DatabaseHandler db = new DatabaseHandler(context);
+		tama = db.getTamamon(1);
+		tama.setControllerContext(context);
+		db.close();
 		background = new Background(context);
 	}
 

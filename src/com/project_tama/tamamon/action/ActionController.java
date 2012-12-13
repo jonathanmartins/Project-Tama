@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 
 import com.project_tama.R;
+import com.project_tama.database.DatabaseHandler;
 import com.project_tama.tamamon.action.designer.Designer;
 import com.project_tama.tamamon.action.motor.Motor;
 
@@ -17,14 +18,17 @@ public class ActionController {
 	
 	private Bitmap bmp;
 	
-	public ActionController(Context context, int id) {
+	public ActionController(Context context) {
 		this.bmp = Bitmap.createBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.inits));
 		
 		int width = bmp.getWidth() / 18;
 		int height = bmp.getHeight() / 4;
 		
 		designer = new Designer(width, height);
-		motor = new Motor(width, height, id);
+		
+		DatabaseHandler db = new DatabaseHandler(context);
+		motor = new Motor(width, height, db.getTamamon(1).getTamaId());
+		db.close();
 	}
 	
 	public void drawOnCanvas(Canvas canvas) {

@@ -2,6 +2,7 @@ package com.project_tama.services.server;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.Random;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -9,9 +10,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -61,9 +64,10 @@ public class GetTamamon extends AsyncTask<String, String, JSONObject>{
 	protected void onPostExecute(JSONObject result) {
 		super.onPostExecute(result);
 		SharedPreferences login = activity.getSharedPreferences("login_prefs", AccountActivity.MODE_PRIVATE);
+		SharedPreferences gameSettings = activity.getSharedPreferences("gameSettings", AccountActivity.MODE_PRIVATE);
 		
 		if (result.equals("0")) {
-			Toast.makeText(activity, "Nï¿½o foi possï¿½vel recuperar o seu tamamon!", Toast.LENGTH_LONG).show();
+			Toast.makeText(activity, "Não foi possível recuperar o seu tamamon!", Toast.LENGTH_LONG).show();
 			login.edit().putBoolean("ready", false).commit();
 		} else {
 			Toast.makeText(activity, "Tamamon recuperado, divirta-se!", Toast.LENGTH_LONG).show();
@@ -71,10 +75,15 @@ public class GetTamamon extends AsyncTask<String, String, JSONObject>{
 			
 			DatabaseHandler db = new DatabaseHandler(activity);
 			try {
-				Tamamon tama = db.getTamamon(((Integer) result.get("id")).intValue());
-				tama.setEnergy(((Integer) result.get("energy")).intValue());
-				tama.setLife(((Integer) result.get("life")).intValue());
-				db.updateTamamon(tama);
+				if (db.getAllTamamons().size() == 0) {
+					Tamamon tama = new Tamamon(1, new Random().nextInt(9), "tamamon", 20, 20);
+					db.addTamamon(tama);
+				} else {
+					Tamamon tama = db.getTamamon(1);
+					tama.setEnergy(((Integer) result.get("energy")).intValue());
+					tama.setLife(((Integer) result.get("life")).intValue());
+					db.updateTamamon(tama);	
+				}
 				
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -89,9 +98,17 @@ public class GetTamamon extends AsyncTask<String, String, JSONObject>{
 	            // Writing Tamamons to log
 	            Log.d("Name: ", log);
 	        }
+	        
+	        db.close();
 		}
 		
 		progressDialog.dismiss();
+		
+		if (gameSettings.getBoolean("vibrate", true)) {
+			Vibrator v = (Vibrator) activity.getSystemService(Context.VIBRATOR_SERVICE);
+			v.vibrate(300);
+		}
+
 		Intent in = new Intent(activity, CityActivity.class);
 		activity.startActivity(in);
 	}

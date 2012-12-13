@@ -15,13 +15,14 @@ import android.util.Log;
 public class DatabaseHandler extends SQLiteOpenHelper{
 
 	//Database version
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 3;
 	//Database name
 	private static final String DATABASE_NAME = "tamamon";
 	//Tamamons table name
 	private static final String TABLE_TAMAMONS = "tamamons";
 	//Tatamons table columns names
 	private static final String KEY_ID = "id";
+	private static final String KEY_TAMA_ID = "tamaid";
 	private static final String KEY_NAME = "name";
 	private static final String KEY_LIFE = "life";
 	private static final String KEY_ENERGY = "energy";
@@ -33,8 +34,11 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		String CREATE_TAMAMONS_TABLE = "CREATE TABLE " + TABLE_TAMAMONS + "("
-				+ KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
-				+ KEY_LIFE + " INTEGER," + KEY_ENERGY + " INTEGER" + ")";
+				+ KEY_ID + " INTEGER PRIMARY KEY,"
+				+ KEY_TAMA_ID + " INTEGER,"
+				+ KEY_NAME + " TEXT,"
+				+ KEY_LIFE + " INTEGER,"
+				+ KEY_ENERGY + " INTEGER" + ")";
 		db.execSQL(CREATE_TAMAMONS_TABLE);
 	}
 
@@ -54,6 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 	    SQLiteDatabase db = this.getWritableDatabase();
 	 
 	    ContentValues values = new ContentValues();
+	    values.put(KEY_TAMA_ID, tamamon.getTamaId());
 	    values.put(KEY_NAME, tamamon.getName());
 	    values.put(KEY_LIFE, tamamon.getEnergy());
 	    values.put(KEY_ENERGY, tamamon.getLife());
@@ -68,13 +73,13 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 		SQLiteDatabase db = this.getReadableDatabase();
 		 
         Cursor cursor = db.query(TABLE_TAMAMONS, new String[] { KEY_ID,
-                KEY_NAME, KEY_LIFE, KEY_ENERGY }, KEY_ID + "=?",
+        		KEY_TAMA_ID, KEY_NAME, KEY_LIFE, KEY_ENERGY }, KEY_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
- 
-        Tamamon Tamamon = new Tamamon(Integer.parseInt(cursor.getString(0)), cursor.getString(1),
-        		Integer.parseInt(cursor.getString(2)), Integer.parseInt(cursor.getString(3)));
+        
+        Tamamon Tamamon = new Tamamon(Integer.parseInt(cursor.getString(0)), Integer.parseInt(cursor.getString(1)),
+        		cursor.getString(2), Integer.parseInt(cursor.getString(3)), Integer.parseInt(cursor.getString(4)));
         		
         return Tamamon;	
 	}
@@ -92,9 +97,10 @@ public class DatabaseHandler extends SQLiteOpenHelper{
             do {
                 Tamamon Tamamon = new Tamamon();
                 Tamamon.setId(Integer.parseInt(cursor.getString(0)));
-                Tamamon.setName(cursor.getString(1));
-                Tamamon.setLife(Integer.parseInt(cursor.getString(2)));
-                Tamamon.setEnergy(Integer.parseInt(cursor.getString(3)));
+                Tamamon.setTamaId(Integer.parseInt(cursor.getString(1)));
+                Tamamon.setName(cursor.getString(2));
+                Tamamon.setLife(Integer.parseInt(cursor.getString(3)));
+                Tamamon.setEnergy(Integer.parseInt(cursor.getString(4)));
                 // Adding Tamamon to list
                 TamamonList.add(Tamamon);
             } while (cursor.moveToNext());

@@ -10,6 +10,7 @@ public class Tamamon {
 	private ActionController controller;
 	
 	private int id;
+	private int tamaId;
 	private String name;
 	private int life;
 	private int energy;
@@ -20,6 +21,14 @@ public class Tamamon {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getTamaId() {
+		return tamaId;
+	}
+
+	public void setTamaId(int tamaId) {
+		this.tamaId = tamaId;
 	}
 
 	public String getName() {
@@ -47,8 +56,9 @@ public class Tamamon {
 	}
 
 	//Using in database
-	public Tamamon(int id, String name, int life, int energy){
+	public Tamamon(int id, int tamaId, String name, int life, int energy){
 		this.id = id;
+		this.tamaId = tamaId;
 		this.name = name;
 		this.life = life;
 		this.energy = energy;
@@ -62,10 +72,6 @@ public class Tamamon {
 	
 	//Using in database
 	public Tamamon(){}
-	
-	public Tamamon(Context context, int id) {
-		controller = new ActionController(context, id);
-	}
 
 	public void drawMe(Canvas canvas) {
 		controller.drawOnCanvas(canvas);
@@ -74,5 +80,9 @@ public class Tamamon {
 	public void walkTo(float x, float y, int screenWidth, int screenHeight) {
 		controller.notifyMotor(x, y, screenWidth, screenHeight);
 	}
-	
+
+	public void setControllerContext(Context context) {
+		controller = new ActionController(context);		
+	}
+
 }
