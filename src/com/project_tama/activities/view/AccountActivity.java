@@ -1,9 +1,12 @@
 package com.project_tama.activities.view;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -11,15 +14,18 @@ import android.widget.Toast;
 
 import com.project_tama.R;
 import com.project_tama.activities.AbstractActivity;
+import com.project_tama.database.DatabaseHandler;
 import com.project_tama.services.server.SignIn;
 import com.project_tama.services.server.SignUp;
+import com.project_tama.tamamon.Tamamon;
 
 public class AccountActivity extends AbstractActivity {
 
 	public static final String LOGIN_PREFS = "login_prefs";
 	public static final String READY = "ready";
 	
-	private EditText pass_login, email_login, email_register;
+	private DatabaseHandler db;
+	private EditText pass_login, email_login, email_register, tamamon_name;
 	private Context context;
 	private CheckBox remember;
 	
@@ -36,7 +42,10 @@ public class AccountActivity extends AbstractActivity {
 		pass_login = (EditText) findViewById(R.id.pass_sign_in);
 		email_register = (EditText) findViewById(R.id.email_sign_up);
 		remember = (CheckBox) findViewById(R.id.remember_login);
+		tamamon_name = (EditText) findViewById(R.id.tamamon_name);
 
+		db = new DatabaseHandler(this);
+		
 		context = getApplicationContext();
 	}
 
@@ -92,8 +101,14 @@ public class AccountActivity extends AbstractActivity {
 			CharSequence text = "Por favor, verifique seu email! Precisamos de confirmacao.";
 			Toast.makeText(context, text, Toast.LENGTH_LONG).show();
 
+			String tamamonName = tamamon_name.getText().toString();
+	        db.addTamamon(new Tamamon(tamamonName, 20, 20));
+			
 			String newUser = email_register.getText().toString();
 			signUp(newUser);
+			
+			tamamon_name.setText("");
+			tamamon_name.clearFocus();
 			email_register.setText("");
 			email_register.clearFocus();
 			break;
